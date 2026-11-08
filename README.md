@@ -4,6 +4,16 @@ Furtune is an online furniture store, built as a portfolio project.
 
 **Live site:** https://furtune.webflow.io
 
+![Furtune homepage](screenshots/home.jpg)
+
+| Shop | Product page |
+| --- | --- |
+| ![Shop page with category filters](screenshots/shop.jpg) | ![Product page with finish options and Add to cart](screenshots/product.jpg) |
+
+| On a phone | About page |
+| --- | --- |
+| <img src="screenshots/home-phone.jpg" alt="Homepage on a phone" width="300"> | ![About page, the workshop section](screenshots/about-workshop.jpg) |
+
 ## How it's built
 
 Most of the site is built in **Webflow**: the design, page layouts, product catalogue (CMS), animations and store pages. That part lives in Webflow, so it isn't in this repository.
