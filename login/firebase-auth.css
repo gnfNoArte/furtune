@@ -1,0 +1,14 @@
+.ft-auth-msg{margin:14px 0 0;font-size:14px;line-height:1.5;color:#9b2c2c}
+.ft-auth-msg.ok{color:#2f5d50}
+.ft-auth-msg:empty{display:none}
+.continue-with-google-button[aria-busy=true],.section---customer-login input[type=submit][disabled]{opacity:.6;pointer-events:none}
+.section---customer-login.ft-auth-wait .w-tabs{visibility:hidden}
+.ft-profile{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:8px 0 24px}
+.ft-profile .ft-av{width:76px;height:76px;border-radius:50%;object-fit:cover;background:#162725;color:#fff;display:flex;align-items:center;justify-content:center;font:400 30px/1 Fraunces,Georgia,serif}
+.ft-profile h1{font:400 34px/1.2 Fraunces,Georgia,serif;margin:6px 0 0;color:#162725}
+.ft-profile p{margin:0;color:#55554f;font-size:15px;word-break:break-word}
+.ft-profile .ft-actions{display:flex;flex-direction:column;gap:12px;width:100%;max-width:320px;margin-top:10px}
+.ft-profile .ft-btn{display:block;padding:15px 24px;background:#162725!important;color:#fff!important;text-decoration:none!important;letter-spacing:.08em;font-size:13px;text-transform:uppercase;border:1px solid #162725;text-align:center}
+.ft-profile .ft-btn.alt{background:transparent!important;color:#162725!important}
+.ft-profile .ft-btn:hover{opacity:.88}
+.ft-profile .ft-out{background:none;border:0;color:#162725;text-decoration:underline;cursor:pointer;font-size:14px;margin-top:6px}

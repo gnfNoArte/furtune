@@ -1,0 +1,2 @@
+/* Signed in: the same icon element shows the person's photo, so size and spacing never change. */
+header img.icon.ft-hav { border-radius: 50% !important; object-fit: cover; box-shadow: 0 0 0 1.5px #fff; }

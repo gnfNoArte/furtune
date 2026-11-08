@@ -1,0 +1,40 @@
+/* Room cards (Office, Home, Outdoor): one shared hover. Each card keeps its own photo, which slowly zooms
+   while the shade behind the label deepens. Replaces three different Designer hovers that swapped in other photos. */
+.div-block-5 .template-content-1 { --ft-room: url("https://cdn.prod.website-files.com/69b5fa6f6e43ec9f5ff8fac4/6aeebad934b7e4e15f4c45e6_furtune-office-960.webp"); }
+.div-block-5 .template-naming-2 { --ft-room: url("https://cdn.prod.website-files.com/69b5fa6f6e43ec9f5ff8fac4/6aeebad8fca625d7c26f0a4b_furtune-home-960.webp"); }
+.div-block-5 .template-content-1._3 { --ft-room: url("https://cdn.prod.website-files.com/69b5fa6f6e43ec9f5ff8fac4/69ba588aa84caed4a930eae8_ad766350-6243-48dd-a4e2-f2b3cd630534.avif"); }
+.div-block-5 .template-content-1, .div-block-5 .template-naming-2 { position: relative; overflow: hidden; isolation: isolate; background-image: none !important; background-color: #2a2f2c; }
+.div-block-5 .template-content-1::before, .div-block-5 .template-naming-2::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: var(--ft-room) center / cover no-repeat;
+  transform: scale(1.001); transition: transform .9s cubic-bezier(.2, .7, .2, 1);
+}
+.div-block-5 .template-content-1::after, .div-block-5 .template-naming-2::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(to top, rgba(10, 10, 10, .5) 0%, rgba(10, 10, 10, .12) 40%, rgba(10, 10, 10, .06) 100%);
+  opacity: .6; transition: opacity .5s ease;
+}
+.div-block-5 .template-naming { transition: transform .5s cubic-bezier(.2, .7, .2, 1); }
+
+/* Homepage product cards: same hover as the Shop page cards (photo zooms to 104%, name underlines).
+   The card clips the photo and the zoom grows from the photo's bottom edge, so it never covers the name
+   and the Designer layout is untouched. */
+.div-block-8 .product-name { text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 4px; text-decoration-thickness: 1px; transition: text-decoration-color .3s ease; }
+
+@media (hover: hover) {
+  .div-block-5 .template-content-1:hover::before, .div-block-5 .template-naming-2:hover::before { transform: scale(1.05); }
+  .div-block-5 .template-content-1:hover::after, .div-block-5 .template-naming-2:hover::after { opacity: 1; }
+  .div-block-5 .template-content-1:hover .template-naming, .div-block-5 .template-naming-2:hover .template-naming { transform: translateY(-4px); }
+  .div-block-8 .product-info { overflow: hidden; cursor: pointer; }
+  .div-block-8 .image-product { transform-origin: 50% 100%; transition: transform .7s cubic-bezier(.2, .7, .2, 1); }
+  .div-block-8 .product-info:hover .image-product { transform: scale(1.04); }
+  .div-block-8 .product-info:hover .product-name { text-decoration-color: currentColor; }
+}
+.div-block-5 a:focus-visible, .div-block-8 a:focus-visible { outline: none; }
+.div-block-5 a:focus-visible > *::before { transform: scale(1.05); }
+.div-block-5 a:focus-visible > *::after { opacity: 1; }
+.div-block-5 a:focus-visible > *, .div-block-8 a:focus-visible .image-product { outline: 2px solid #162725; outline-offset: -2px; }
+.div-block-8 a:focus-visible .product-name { text-decoration-color: currentColor; }
+@media (prefers-reduced-motion: reduce) {
+  .div-block-5 .template-content-1::before, .div-block-5 .template-naming-2::before, .div-block-5 .template-naming, .div-block-8 .image-product { transition: none; transform: none !important; }
+}

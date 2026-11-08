@@ -1,0 +1,2 @@
+/* Speed: start the homepage hero photo (the largest thing on screen) as early as possible. */
+if (location.pathname === '/') { var ftPre = document.createElement('link'); ftPre.rel = 'preload'; ftPre.as = 'image'; ftPre.href = 'https://cdn.prod.website-files.com/69b5fa6f6e43ec9f5ff8fac4/6aeebad85e72353facca4b9f_furtune-hero-2000.webp'; ftPre.setAttribute('fetchpriority', 'high'); document.head.appendChild(ftPre); }

@@ -1,0 +1,43 @@
+/* Smoothness: scroll-in animations keep their fade and slide, but not the blur. Animating blur on large sections is very expensive, especially on phones. */
+.div-usp-content, .div-block-5, .wrapper---sitting-room-product-grid, .image-6, .stir-cta, .sitr-subtext, .section-11 .form-block, .div-designss, .background-video-2, .bg-vid-textwrapper { filter: none !important; }
+/* Only promote a card image to its own layer while it is actually animating. */
+.ft-card-img { will-change: auto !important; }
+@media (hover: hover) { .ft-card:hover .ft-card-img { will-change: transform !important; } }
+
+/* Logo: true centre on desktop. Overrides the hand-tuned left values on the BRAND "Current" state. */
+@media (min-width: 992px) {
+  .div-main-nav-home > .brand, .div-main-nav-home > .brand.w--current { position: absolute; left: 50% !important; top: 50%; transform: translate(-50%, -50%); margin: 0 !important; }
+}
+/* Tablet and phone: logo left, icons right, search below - all on one page gutter (20px phone, 32px tablet). */
+@media (max-width: 991px) {
+  .div-main-nav-home { padding-left: var(--ft-g, 32px) !important; padding-right: var(--ft-g, 32px) !important; }
+  .div-main-nav-home > .brand, .div-main-nav-home > .brand.w--current { position: static !important; left: auto !important; top: auto !important; transform: none !important; margin: 0 !important; order: 1; }
+  .div-main-nav-home > .icons-search { order: 0; gap: 22px !important; align-items: center !important; margin-right: 0 !important; }
+  .div-main-nav-home > .brand .div-block-logo-m, .div-main-nav-home > .brand img { margin-left: 0 !important; left: 0 !important; }
+  header .search.lower-nav { padding-left: var(--ft-g, 32px) !important; padding-right: var(--ft-g, 32px) !important; }
+  header .search-wrapper.lower-nav { font-size: 16px !important; }
+  .icons-search > .icon-llink { display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; gap: 6px !important; width: auto !important; min-width: 44px !important; min-height: 44px; height: auto !important; padding: 0 !important; margin: 0 !important; }
+  .icons-search > .icon-llink > img.icon, .icons-search .ft-cart-icon, .icons-search .ft-cart-icon img { width: 24px !important; height: 24px !important; margin: 0 !important; object-fit: contain; flex: none !important; align-self: center !important; }
+  .icons-search .icon-name { font-size: 10px !important; font-weight: 400 !important; line-height: 1 !important; letter-spacing: .04em; padding: 0 !important; margin: 0 !important; text-align: center; white-space: nowrap; align-self: center !important; }
+  /* Swipe rows: the Designer gives these cards a fixed min-width, which made them overlap. */
+  .div-block-5 > *, .div-block-5 > a > *, .div-block-8 .product-info { min-width: 0 !important; max-width: none !important; }
+  .ft-policy-wrap { padding-left: var(--ft-g, 32px) !important; padding-right: var(--ft-g, 32px) !important; }
+  .bg-vid-textwrapper > * { margin-left: 0 !important; }
+}
+@media (max-width: 767px) {
+  .div-usp-content .heading-4, .div-usp-content .paragraph { text-align: left !important; }
+}
+@media (max-width: 479px) {
+  .div-main-nav-home { padding-left: var(--ft-g, 20px) !important; padding-right: var(--ft-g, 20px) !important; }
+  header .search.lower-nav { padding-left: var(--ft-g, 20px) !important; padding-right: var(--ft-g, 20px) !important; }
+}
+/* Login page details. */
+.section---customer-login .welcome-back { font-family: Fraunces, Georgia, serif !important; font-weight: 400 !important; }
+.section---customer-login .w-input { height: 52px; padding: 0 16px !important; border: 1px solid #d6d9d8 !important; border-radius: 0 !important; background: #fff !important; }
+.section---customer-login .w-input:focus { border-color: #162725 !important; outline: none; }
+.section---customer-login .forgotten-password, .section---customer-login .create-account { color: #162725 !important; white-space: nowrap; }
+.section---customer-login .remember-me-forgot-passs { display: flex !important; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+/* Search results on the Shop page. */
+.ft-search-clear { display: inline-block; margin-top: 12px; color: #162725; font-size: 14px; text-decoration: underline; }
+.ft-ship-note { margin: 10px 0 0; font-size: .8125rem; line-height: 1.5; color: #55554f; }
+.ft-ship-note[hidden] { display: none; }
