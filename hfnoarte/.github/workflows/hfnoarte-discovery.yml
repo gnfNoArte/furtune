@@ -1,0 +1,19 @@
+# Optional: run discovery more often than Vercel's free once-a-day cron.
+# Copy this file to the repository root's .github/workflows/ folder, then add
+# two repository secrets: HFNOARTE_URL (e.g. https://your-app.vercel.app)
+# and HFNOARTE_CRON_SECRET (the same value as CRON_SECRET).
+name: hfNoArte discovery
+on:
+  schedule:
+    - cron: "23 */4 * * *"   # every 4 hours
+  workflow_dispatch: {}
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Trigger discovery
+        run: |
+          curl -fsS --max-time 320 \
+            -H "Authorization: Bearer ${{ secrets.HFNOARTE_CRON_SECRET }}" \
+            "${{ secrets.HFNOARTE_URL }}/api/cron/discover"
