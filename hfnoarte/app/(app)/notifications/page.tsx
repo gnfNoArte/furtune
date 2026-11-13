@@ -70,13 +70,13 @@ export default async function Notifications() {
         {(list ?? []).length ? (
           <ul className="space-y-2">
             {(list ?? []).map((n) => (
-              <li key={n.id} className={`card p-4 ${n.read_at ? "" : "border-violet/30"}`}>
+              <li key={n.id} className={`card p-4 ${n.read_at ? "" : "border-ink/25"}`}>
                 <div className="flex items-start justify-between gap-2">
                   <p className="text-[13.5px] font-medium">{n.title}</p>
-                  {!n.read_at && <span className="mt-1.5 size-2 shrink-0 rounded-full bg-violet" />}
+                  {!n.read_at && <span className="mt-1.5 size-2 shrink-0 rounded-full bg-ink" />}
                 </div>
                 <p className="mt-1 text-[12px] text-faint">{fmtDateTime(n.created_at)}</p>
-                {n.link && <a href={n.link} target="_blank" rel="noopener noreferrer" className="mt-1.5 block truncate text-[12.5px] text-violet-bright hover:underline">{n.link}</a>}
+                {n.link && <a href={n.link} target="_blank" rel="noopener noreferrer" className="mt-1.5 block truncate text-[12.5px] link">{n.link}</a>}
                 {Object.keys(n.channels ?? {}).length > 0 && (
                   <div className="mt-2 flex flex-wrap gap-1">
                     {Object.entries(n.channels as Record<string, string>).map(([k, v]) => <Badge key={k} tone={v === "sent" ? "strong" : "danger"} title={v}>{k}: {v === "sent" ? "sent" : "failed"}</Badge>)}

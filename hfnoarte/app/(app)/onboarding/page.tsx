@@ -12,8 +12,8 @@ export default function Onboarding() {
         description="hfNoArte only matches and writes from your real experience. Pick how to start — you can upload a resume and edit everything afterwards." />
       <div className="grid gap-4 md:grid-cols-2">
         <Card className="flex flex-col p-5">
-          <p className="eyebrow mb-2 text-violet-bright">Recommended</p>
-          <h2 className="text-lg font-semibold tracking-tight">Start from NoArte&apos;s profile</h2>
+          <p className="eyebrow mb-2">Recommended</p>
+          <h2 className="text-lg font-semibold tracking-tight">Start from Olayemi&apos;s profile</h2>
           <p className="mt-1.5 text-sm text-muted">The background you provided: {s.experiences.length} roles, {s.projects.length} projects ({s.projects.map((p) => p.name).join(", ")}) and {s.skills.length} skills. Nothing extra is added. Your resume will override it.</p>
           <form action={startFromSeed} className="mt-auto pt-5"><Button variant="primary" className="w-full">Use this profile</Button></form>
         </Card>

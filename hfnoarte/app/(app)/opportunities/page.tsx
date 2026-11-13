@@ -35,7 +35,7 @@ export default async function Opportunities({ searchParams }: { searchParams: Pr
     const on = (sp[key] ?? undefined) === value;
     return (
       <Link key={`${key}-${value}`} href={`/opportunities?${next}`} aria-current={on ? "true" : undefined}
-        className={cx("rounded-full border px-3 py-1 text-[12.5px] transition-colors", on ? "border-violet/40 bg-violet-wash text-violet-bright" : "border-line text-muted hover:border-line-strong hover:text-fg")}>{label}</Link>
+        className={cx("rounded-full border px-3 py-1 text-[12.5px] transition-colors", on ? "border-ink/40 bg-butter text-fg" : "border-line text-muted hover:border-line-strong hover:text-fg")}>{label}</Link>
     );
   };
 

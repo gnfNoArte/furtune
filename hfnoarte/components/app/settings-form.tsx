@@ -21,7 +21,7 @@ export function SettingsForm({ action, children, submit = "Save" }: { action: Ac
 
 export function CheckChip({ name, value, label, defaultChecked }: { name: string; value?: string; label: string; defaultChecked?: boolean }) {
   return (
-    <label className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-line bg-surface-2 px-3 py-1.5 text-[13px] text-muted transition-colors has-[:checked]:border-violet/40 has-[:checked]:bg-violet-wash has-[:checked]:text-violet-bright">
+    <label className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-line bg-surface-2 px-3 py-1.5 text-[13px] text-muted transition-colors has-[:checked]:border-ink has-[:checked]:bg-butter has-[:checked]:text-ink">
       <input type="checkbox" name={name} value={value ?? "on"} defaultChecked={defaultChecked} className="sr-only" />
       {label}
     </label>
@@ -34,7 +34,7 @@ export function Toggle({ name, label, hint, defaultChecked }: { name: string; la
       <span><span className="block text-sm font-medium">{label}</span>{hint && <span className="block text-xs text-faint">{hint}</span>}</span>
       <span className="relative mt-0.5 shrink-0">
         <input type="checkbox" name={name} defaultChecked={defaultChecked} className="peer sr-only" />
-        <span className="block h-6 w-10 rounded-full bg-surface-3 ring-1 ring-line transition-colors peer-checked:bg-violet peer-focus-visible:ring-2 peer-focus-visible:ring-violet" />
+        <span className="block h-6 w-10 rounded-full bg-surface-3 ring-1 ring-line transition-colors peer-checked:bg-ink peer-focus-visible:ring-2 peer-focus-visible:ring-ink" />
         <span className="absolute left-0.5 top-0.5 size-5 rounded-full bg-fg transition-transform peer-checked:translate-x-4" />
       </span>
     </label>

@@ -15,8 +15,8 @@ const job = (o: Partial<RawOpportunity>): RawOpportunity => ({ source: "test", u
 describe("candidate profile", () => {
   it("recognises the candidate's real skill areas only", () => {
     const c = candidateClusters(P);
-    for (const id of ["webflow", "framer", "shopify", "figma", "ui_ux", "product_design", "branding", "web3", "data_annotation", "web_design", "css"]) expect(c.has(id), id).toBe(true);
-    for (const id of ["react", "nextjs", "javascript", "typescript", "backend", "fullstack"]) expect(c.has(id), id).toBe(false);
+    for (const id of ["webflow", "framer", "shopify", "figma", "ui_ux", "product_design", "branding", "web3", "data_annotation", "web_design", "css", "javascript"]) expect(c.has(id), id).toBe(true);
+    for (const id of ["react", "nextjs", "vue", "typescript", "backend", "fullstack"]) expect(c.has(id), id).toBe(false);
   });
   it("estimates level from the given dates and labels it as an estimate", () => {
     const l = candidateLevel(P, now);

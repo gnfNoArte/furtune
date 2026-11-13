@@ -26,15 +26,15 @@ export function opportunityBlock(o: NotifyOpportunity, appUrl: string) {
     `Open original: ${o.url ?? "no link available"}`,
     `In hfNoArte: ${appUrl}/opportunities/${o.id}`,
   ];
-  const html = `<div style="margin:0 0 24px;padding:16px;border:1px solid #2a2a33;border-radius:12px">
+  const html = `<div style="margin:0 0 24px;padding:16px;border:1px solid #E3DACA;border-radius:16px;background:#FBF9F4;color:#1B1A17">
 <div style="font-size:16px;font-weight:600">${esc(lines[0])}</div>
-<div style="color:#8b5cf6;margin:4px 0 8px">${esc(lines[1])}</div>
-<p style="margin:0 0 8px;color:#444">${esc(brief(o.description))}</p>
-<p style="margin:0 0 4px;font-size:13px;color:#666">${esc(lines[3])}</p>
+<div style="color:#5C5545;font-family:monospace;text-transform:uppercase;letter-spacing:.06em;font-size:12px;margin:6px 0 10px">${esc(lines[1])}</div>
+<p style="margin:0 0 8px;color:#3B372D">${esc(brief(o.description))}</p>
+<p style="margin:0 0 4px;font-size:13px;color:#5C5545">${esc(lines[3])}</p>
 <p style="margin:0 0 4px;font-size:13px"><b>Why:</b> ${esc(why)}</p>
 <p style="margin:0 0 12px;font-size:13px"><b>Watch out:</b> ${esc(gaps)}</p>
-${o.url ? `<a href="${esc(o.url)}" style="background:#7c3aed;color:#fff;padding:8px 14px;border-radius:8px;text-decoration:none">Open original</a>` : ""}
-<a href="${esc(`${appUrl}/opportunities/${o.id}`)}" style="margin-left:12px;color:#7c3aed">View in hfNoArte</a></div>`;
+${o.url ? `<a href="${esc(o.url)}" style="background:#1B1A17;color:#F7F4EC;padding:10px 18px;border-radius:999px;text-decoration:none">Open original</a>` : ""}
+<a href="${esc(`${appUrl}/opportunities/${o.id}`)}" style="margin-left:14px;color:#1B1A17">View in hfNoArte</a></div>`;
   return { text: lines.join("\n"), html };
 }
 
@@ -46,7 +46,7 @@ export function composeMatches(items: NotifyOpportunity[], appUrl: string, diges
   return {
     subject,
     text: `${digest ? "Daily digest — " : ""}hfNoArte found ${items.length} new match${items.length === 1 ? "" : "es"}.\n\n${blocks.map((b) => b.text).join("\n\n———\n\n")}\n\nNothing has been sent to anyone. Open each link to apply or reply yourself.`,
-    html: `<div style="font-family:system-ui,sans-serif;max-width:600px">${blocks.map((b) => b.html).join("")}<p style="color:#888;font-size:12px">Nothing has been sent to anyone. Open each link to apply or reply yourself.</p></div>`,
+    html: `<div style="font-family:system-ui,sans-serif;max-width:600px;background:#F7F4EC;color:#1B1A17;padding:20px">${blocks.map((b) => b.html).join("")}<p style="color:#5C5545;font-size:12px">Nothing has been sent to anyone. Open each link to apply or reply yourself.</p></div>`,
   };
 }
 

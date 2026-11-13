@@ -27,7 +27,7 @@ export default async function Review({ searchParams }: { searchParams: Promise<{
       <PageHeader eyebrow="Review & Approve" title="Nothing goes out without you"
         description="Every prepared application and message waits here. Approving means it's ready for you to use — hfNoArte never submits applications or sends messages itself." />
       {approvedCount > 0 && (
-        <Notice tone="violet" className="mb-6" title={`${approvedCount} application${approvedCount === 1 ? "" : "s"} approved`}>
+        <Notice tone="butter" className="mb-6" title={`${approvedCount} application${approvedCount === 1 ? "" : "s"} approved`}>
           Nothing has been submitted or sent. Open each one from the <a href="/tracker">Tracker</a>, use your approved material on the original page, then mark it as applied or contacted.
         </Notice>
       )}

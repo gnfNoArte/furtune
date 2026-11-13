@@ -1,47 +1,56 @@
 @import "tailwindcss";
 
-/* hfNoArte design tokens — near-black surfaces, electric violet accent. */
+/* hfNoArte — NoArte brand system (web/product, light surfaces).
+   Paper backgrounds, Ink text and actions, Brass as the one sparing accent.
+   Cormorant for big statements, Geist for everything functional, Geist Mono for labels. */
 @theme {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-display: var(--font-cormorant), "Cormorant", Georgia, serif;
+  --font-mark: var(--font-amarante), "Amarante", serif;
 
-  --color-bg: #09090c;
-  --color-surface: #111116;
-  --color-surface-2: #17171e;
-  --color-surface-3: #1e1e27;
-  --color-line: #24242e;
-  --color-line-strong: #32323f;
-  --color-fg: #ececf1;
-  --color-muted: #9090a0;
-  --color-faint: #5d5d6c;
+  /* Brand tokens */
+  --color-paper: #F7F4EC;
+  --color-butter: #F4E9C4;
+  --color-ink: #1B1A17;
+  --color-ink-soft: #33302A;
+  --color-brass: #9A7424;
+  --color-chocolate: #2A1A12;
+  --color-walnut: #6B4430;
 
-  --color-violet: #8b5cf6;
-  --color-violet-bright: #a78bfa;
-  --color-violet-deep: #6d28d9;
-  --color-violet-wash: rgb(139 92 246 / 0.12);
+  /* Semantic roles */
+  --color-bg: #F7F4EC;          /* Paper */
+  --color-surface: #FBF9F4;     /* raised Paper (never pure white) */
+  --color-surface-2: #F1ECE0;
+  --color-surface-3: #E9E2D2;
+  --color-line: #E3DACA;
+  --color-line-strong: #CFC3AC;
+  --color-fg: #1B1A17;          /* Ink */
+  --color-muted: #5C5545;       /* Muted 1 */
+  --color-faint: #6F6757;       /* AA on Paper */
+  --color-accent: #9A7424;      /* Brass — large text and small details only */
 
-  --color-strong: #34d399;
-  --color-reasonable: #a78bfa;
-  --color-stretch: #fbbf24;
-  --color-poor: #71717a;
-  --color-danger: #f87171;
-  --color-info: #60a5fa;
+  /* Match bands: tonal, not rainbow */
+  --color-strong: #1B1A17;
+  --color-reasonable: #6B4430;
+  --color-stretch: #7A5A16;     /* darkened Brass so small text passes AA */
+  --color-poor: #8A8170;
+  --color-danger: #A3392A;
+  --color-info: #5C5545;
 
-  --radius-card: 14px;
-  --shadow-glow: 0 0 0 1px rgb(139 92 246 / 0.35), 0 8px 30px -12px rgb(139 92 246 / 0.45);
+  --radius-card: 16px;
 }
 
 @layer base {
-  html { color-scheme: dark; -webkit-text-size-adjust: 100%; }
+  html { color-scheme: light; -webkit-text-size-adjust: 100%; }
   body {
     background: var(--color-bg);
     color: var(--color-fg);
     font-family: var(--font-sans);
-    font-feature-settings: "cv11", "ss01";
     -webkit-font-smoothing: antialiased;
   }
-  ::selection { background: rgb(139 92 246 / 0.35); }
-  :focus-visible { outline: 2px solid var(--color-violet); outline-offset: 2px; border-radius: 6px; }
+  ::selection { background: var(--color-butter); color: var(--color-ink); }
+  :focus-visible { outline: 2px solid var(--color-ink); outline-offset: 2px; border-radius: 6px; }
   input, textarea, select { font: inherit; }
   [hidden] { display: none !important; }
 }
@@ -49,15 +58,25 @@
 @layer components {
   .card { background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-card); }
   .field {
-    width: 100%; background: var(--color-surface-2); border: 1px solid var(--color-line); border-radius: 10px;
-    padding: 0.6rem 0.75rem; color: var(--color-fg); transition: border-color .15s, box-shadow .15s;
+    width: 100%; background: var(--color-surface); border: 1px solid var(--color-line); border-radius: 10px;
+    padding: 0.65rem 0.8rem; color: var(--color-fg); transition: border-color .15s, box-shadow .15s;
   }
   .field::placeholder { color: var(--color-faint); }
-  .field:focus { outline: none; border-color: var(--color-violet); box-shadow: 0 0 0 3px rgb(139 92 246 / 0.18); }
-  .label { display: block; font-size: 0.8rem; font-weight: 500; color: var(--color-muted); margin-bottom: 0.4rem; }
-  .eyebrow { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-faint); font-weight: 600; }
+  .field:focus { outline: none; border-color: var(--color-ink); box-shadow: 0 0 0 3px rgb(27 26 23 / 0.08); }
+  .label { display: block; font-size: 0.85rem; font-weight: 500; color: var(--color-muted); margin-bottom: 0.4rem; }
+  /* Notes: Geist Mono, uppercase, +7% tracking, Muted 1 */
+  .eyebrow { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--color-muted); font-weight: 500; }
+  .link { color: var(--color-fg); text-decoration: underline; text-decoration-color: var(--color-line-strong); text-underline-offset: 3px; }
+  .link:hover { text-decoration-color: var(--color-fg); }
+  .display { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.01em; line-height: 1.02; }
   .prose-plain { white-space: pre-wrap; line-height: 1.65; }
+  /* NA monogram: Amarante, letters fused (−19%) */
+  .na-mono { font-family: var(--font-mark); letter-spacing: -0.19em; padding-right: 0.19em; line-height: 1; }
 }
+
+/* Calm, deliberate motion: fade with a slight upward drift. */
+@keyframes rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+.rise { animation: rise 600ms ease-out both; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }

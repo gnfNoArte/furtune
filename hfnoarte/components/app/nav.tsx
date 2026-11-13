@@ -22,18 +22,18 @@ const active = (path: string, href: string) => (href === "/" ? path === "/" : pa
 
 function Count({ n }: { n: number }) {
   if (!n) return null;
-  return <span className="ml-auto rounded-full bg-violet px-1.5 text-[11px] font-semibold leading-[18px] text-white tabular-nums">{n > 99 ? "99+" : n}</span>;
+  return <span className="ml-auto rounded-full bg-ink px-1.5 text-[11px] font-medium leading-[18px] text-paper tabular-nums">{n > 99 ? "99+" : n}</span>;
 }
 
 function Wordmark() {
   return (
     <Link href="/" className="flex items-center gap-2.5 px-2">
-      <span className="grid size-8 place-items-center rounded-[9px] bg-surface-3 ring-1 ring-line">
-        <svg viewBox="0 0 64 64" width="18" height="18" aria-hidden><path d="M18 46V18h6v11h16V18h6v28h-6V35H24v11z" fill="#8b5cf6" /><circle cx="49" cy="15" r="4" fill="#a78bfa" /></svg>
+      <span className="grid size-9 place-items-center rounded-[10px] bg-ink text-paper" aria-hidden>
+        <span className="na-mono text-[17px]">NA</span>
       </span>
       <span className="leading-tight">
-        <span className="block text-[15px] font-semibold tracking-tight">hf<span className="text-violet-bright">NoArte</span></span>
-        <span className="block text-[11px] text-faint">Hunt for NoArte</span>
+        <span className="block text-[15px] font-semibold tracking-tight">hfNoArte</span>
+        <span className="block font-mono text-[10.5px] uppercase tracking-[0.07em] text-muted">Hunt for NoArte</span>
       </span>
     </Link>
   );
@@ -46,8 +46,8 @@ export function Sidebar({ counts, email }: { counts: { review: number; unread: n
     const on = active(path, i.href);
     return (
       <Link key={i.href} href={i.href} aria-current={on ? "page" : undefined}
-        className={cx("group flex items-center gap-3 rounded-[9px] px-2.5 py-2 text-[13.5px] transition-colors", on ? "bg-surface-3 text-fg" : "text-muted hover:bg-surface-2 hover:text-fg")}>
-        <Icon className={cx(on ? "text-violet-bright" : "text-faint group-hover:text-muted")} />
+        className={cx("group flex items-center gap-3 rounded-[9px] px-2.5 py-2 text-[13.5px] transition-colors", on ? "bg-surface-3 text-ink font-medium" : "text-muted hover:bg-surface-2 hover:text-fg")}>
+        <Icon className={cx(on ? "text-ink" : "text-faint group-hover:text-muted")} />
         {i.label}
         {"badge" in i && i.badge && <Count n={counts[i.badge]} />}
       </Link>
@@ -80,7 +80,7 @@ export function MobileNav({ counts, email }: { counts: { review: number; unread:
         <Wordmark />
         <Link href="/notifications" className="relative grid size-9 place-items-center rounded-full text-muted hover:bg-surface-2" aria-label={`Notifications${counts.unread ? `, ${counts.unread} unread` : ""}`}>
           <IconBell />
-          {counts.unread > 0 && <span className="absolute right-1.5 top-1.5 size-2 rounded-full bg-violet" />}
+          {counts.unread > 0 && <span className="absolute right-1.5 top-1.5 size-2 rounded-full bg-ink" />}
         </Link>
       </header>
       <nav aria-label="Main" className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-5 border-t border-line bg-bg/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden">
@@ -89,19 +89,19 @@ export function MobileNav({ counts, email }: { counts: { review: number; unread:
           const on = active(path, i.href);
           return (
             <Link key={i.href} href={i.href} aria-current={on ? "page" : undefined} className={cx("relative flex flex-col items-center gap-1 py-2.5 text-[10.5px]", on ? "text-fg" : "text-faint")}>
-              <Icon className={on ? "text-violet-bright" : ""} />
+              <Icon className={on ? "text-fg" : ""} />
               {"short" in i && i.short ? i.short : i.label}
-              {i.badge && counts[i.badge] > 0 && <span className="absolute right-[calc(50%-18px)] top-1.5 rounded-full bg-violet px-1 text-[9.5px] font-semibold leading-[15px] text-white">{counts[i.badge]}</span>}
+              {i.badge && counts[i.badge] > 0 && <span className="absolute right-[calc(50%-18px)] top-1.5 rounded-full bg-ink px-1 text-[9.5px] font-semibold leading-[15px] text-paper">{counts[i.badge]}</span>}
             </Link>
           );
         })}
         <button onClick={() => setOpen(true)} className={cx("flex flex-col items-center gap-1 py-2.5 text-[10.5px]", moreActive ? "text-fg" : "text-faint")} aria-expanded={open}>
-          <IconMenu className={moreActive ? "text-violet-bright" : ""} /> More
+          <IconMenu className={moreActive ? "text-fg" : ""} /> More
         </button>
       </nav>
       {open && (
         <div className="fixed inset-0 z-40 lg:hidden" role="dialog" aria-modal="true" aria-label="More">
-          <button className="absolute inset-0 bg-black/60" aria-label="Close menu" onClick={() => setOpen(false)} />
+          <button className="absolute inset-0 bg-ink/40" aria-label="Close menu" onClick={() => setOpen(false)} />
           <div className="absolute inset-x-0 bottom-0 rounded-t-2xl border-t border-line bg-surface p-4 pb-[calc(1rem+env(safe-area-inset-bottom))]">
             <div className="mb-3 flex items-center justify-between">
               <p className="truncate text-sm text-faint">{email}</p>
@@ -112,7 +112,7 @@ export function MobileNav({ counts, email }: { counts: { review: number; unread:
                 const Icon = i.icon;
                 return (
                   <Link key={i.href} href={i.href} className={cx("flex items-center gap-3 rounded-xl border border-line px-3 py-3 text-sm", active(path, i.href) ? "bg-surface-3" : "bg-surface-2")}>
-                    <Icon className="text-violet-bright" /> {i.label}
+                    <Icon className="text-fg" /> {i.label}
                     {"badge" in i && i.badge && <Count n={counts[i.badge]} />}
                   </Link>
                 );

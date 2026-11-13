@@ -32,16 +32,16 @@ export function RescoreButton({ id }: { id: string }) {
 
 export function ApprovalPanel({ id, approvedAt, pendingCount, url, status }: { id: string; approvedAt: string | null; pendingCount: number; url: string | null; status: OpportunityStatus }) {
   const [pending, start] = useTransition();
-  const [msg, setMsg] = useState<{ tone: "danger" | "violet"; text: string } | null>(null);
+  const [msg, setMsg] = useState<{ tone: "danger" | "butter"; text: string } | null>(null);
   const applied = ["applied", "contacted", "follow_up", "interview", "won"].includes(status);
   if (approvedAt) {
     return (
       <div className="space-y-3">
-        <Notice tone="violet" title="Approved — ready for you to use">
+        <Notice tone="butter" title="Approved — ready for you to use">
           Approval doesn&apos;t submit anything. Open the original page, paste your approved material, and apply or reply yourself. Then record it below.
         </Notice>
         <div className="flex flex-wrap gap-2">
-          {url && <a href={url} target="_blank" rel="noopener noreferrer" className="inline-flex h-10 items-center gap-2 rounded-[10px] bg-violet px-4 text-sm font-medium text-white hover:bg-violet-bright"><IconExternal width={16} height={16} /> Open original</a>}
+          {url && <a href={url} target="_blank" rel="noopener noreferrer" className="inline-flex h-10 items-center gap-2 rounded-[10px] rounded-full bg-ink px-5 text-sm font-medium text-paper hover:bg-ink-soft"><IconExternal width={16} height={16} /> Open original</a>}
           {!applied && <Button disabled={pending} onClick={() => start(async () => { if (confirm("Only mark this as applied once you've actually submitted it on the employer's site. Continue?")) { const r = await setStatus(id, "applied"); if (r.error) setMsg({ tone: "danger", text: r.error }); } })}>I&apos;ve applied</Button>}
           {!applied && <Button disabled={pending} onClick={() => start(async () => { if (confirm("Only mark this as contacted once you've actually sent your message. Continue?")) { const r = await setStatus(id, "contacted"); if (r.error) setMsg({ tone: "danger", text: r.error }); } })}>I&apos;ve sent my message</Button>}
           {!applied && <Button variant="ghost" disabled={pending} onClick={() => start(async () => { await revoke(id); })}>Undo approval</Button>}
@@ -54,9 +54,9 @@ export function ApprovalPanel({ id, approvedAt, pendingCount, url, status }: { i
     <div className="space-y-3">
       <p className="text-sm text-muted">{pendingCount ? `${pendingCount} draft${pendingCount === 1 ? "" : "s"} waiting for your review.` : "No drafts are waiting for review."} Nothing is submitted or sent until you approve, and even then you send it yourself.</p>
       <div className="flex flex-wrap gap-2">
-        <Button variant="primary" disabled={pending || !pendingCount} onClick={() => start(async () => { const r = await approve([id]); setMsg(r.error ? { tone: "danger", text: r.error } : r.failed?.length ? { tone: "danger", text: r.failed[0].message } : { tone: "violet", text: "Approved." }); })}>Approve application</Button>
+        <Button variant="primary" disabled={pending || !pendingCount} onClick={() => start(async () => { const r = await approve([id]); setMsg(r.error ? { tone: "danger", text: r.error } : r.failed?.length ? { tone: "danger", text: r.failed[0].message } : { tone: "butter", text: "Approved." }); })}>Approve application</Button>
         {pendingCount > 0 && <Button variant="ghost" disabled={pending} onClick={() => start(async () => { await rejectApplication(id); })}>Reject drafts</Button>}
-        {!pendingCount && <Button variant="ghost" disabled={pending} onClick={() => start(async () => { if (confirm("Approve without any prepared material? Use this if you'll apply with your own documents.")) { const r = await approve([id], true); setMsg(r.error ? { tone: "danger", text: r.error } : { tone: "violet", text: "Approved." }); } })}>Approve without material</Button>}
+        {!pendingCount && <Button variant="ghost" disabled={pending} onClick={() => start(async () => { if (confirm("Approve without any prepared material? Use this if you'll apply with your own documents.")) { const r = await approve([id], true); setMsg(r.error ? { tone: "danger", text: r.error } : { tone: "butter", text: "Approved." }); } })}>Approve without material</Button>}
       </div>
       {msg && <Notice tone={msg.tone}>{msg.text}</Notice>}
     </div>

@@ -15,13 +15,13 @@ export function AuthForm({ action, fields, submit, footer, hidden }: { action: A
       {fields.map((f) => (
         <div key={f.name}>
           <label className="label" htmlFor={f.name}>{f.label}</label>
-          <input id={f.name} name={f.name} type={f.type ?? "text"} autoComplete={f.autoComplete} required={f.required ?? true} className="field h-11" />
+          <input id={f.name} name={f.name} type={f.type ?? "text"} autoComplete={f.autoComplete} required={f.required ?? true} className="field h-12" />
         </div>
       ))}
       {state?.error && <Notice tone="danger">{state.error}</Notice>}
-      {state?.message && <Notice tone="violet">{state.message}</Notice>}
+      {state?.message && <Notice tone="butter">{state.message}</Notice>}
       <Button type="submit" variant="primary" size="lg" className="w-full" disabled={pending}>{pending ? "Please wait…" : submit}</Button>
-      {footer && <div className="pt-1 text-center text-sm text-muted [&_a]:text-violet-bright hover:[&_a]:underline">{footer}</div>}
+      {footer && <div className="pt-1 text-center text-sm text-muted [&_a]:underline [&_a]:underline-offset-2">{footer}</div>}
     </form>
   );
 }
@@ -29,25 +29,24 @@ export function AuthForm({ action, fields, submit, footer, hidden }: { action: A
 export function AuthShell({ title, subtitle, children }: { title: string; subtitle: string; children: React.ReactNode }) {
   return (
     <div className="grid min-h-dvh lg:grid-cols-[1.05fr_1fr]">
-      <section className="relative hidden overflow-hidden border-r border-line bg-surface lg:flex lg:flex-col lg:justify-between lg:p-12">
-        <div className="pointer-events-none absolute -left-24 -top-24 size-[480px] rounded-full bg-violet/20 blur-[120px]" />
-        <Link href="/" className="relative text-[17px] font-semibold tracking-tight">hf<span className="text-violet-bright">NoArte</span></Link>
+      <section className="relative hidden overflow-hidden bg-chocolate text-paper lg:flex lg:flex-col lg:justify-between lg:p-14">
+        <Link href="/" className="relative flex items-center gap-2.5 text-[15px] font-semibold"><span className="grid size-9 place-items-center rounded-[10px] bg-paper text-ink"><span className="na-mono text-[17px]">NA</span></span>hfNoArte</Link>
         <div className="relative max-w-md">
-          <p className="eyebrow mb-4">Hunt for NoArte</p>
-          <h2 className="text-[34px] font-semibold leading-[1.15] tracking-tight">Your personal agent for finding work that fits.</h2>
-          <ul className="mt-8 space-y-3 text-[14.5px] text-muted">
+          <p className="mb-5 font-mono text-[12px] uppercase tracking-[0.07em] text-paper/70">Hunt for NoArte</p>
+          <h2 className="display text-[56px] font-light leading-[1.02]">Work that fits, <em className="italic text-[#C9A24E]">found</em> for you.</h2>
+          <ul className="mt-10 space-y-3 text-[15px] text-paper/75">
             <li>Finds vacancies, freelance briefs and social posts from free, permitted sources.</li>
             <li>Scores each one honestly against your real experience.</li>
             <li>Prepares applications and messages — you approve and send them yourself.</li>
           </ul>
         </div>
-        <p className="relative text-xs text-faint">Nothing is ever submitted or sent without you.</p>
+        <p className="relative font-mono text-[11px] uppercase tracking-[0.07em] text-paper/60">Nothing is submitted or sent without you</p>
       </section>
       <section className="flex items-center justify-center px-5 py-12">
         <div className="w-full max-w-[380px]">
-          <Link href="/" className="mb-10 block text-[17px] font-semibold tracking-tight lg:hidden">hf<span className="text-violet-bright">NoArte</span></Link>
-          <h1 className="text-[26px] font-semibold tracking-tight">{title}</h1>
-          <p className="mb-7 mt-1.5 text-sm text-muted">{subtitle}</p>
+          <Link href="/" className="mb-12 flex items-center gap-2.5 text-[15px] font-semibold lg:hidden"><span className="grid size-9 place-items-center rounded-[10px] bg-ink text-paper"><span className="na-mono text-[17px]">NA</span></span>hfNoArte</Link>
+          <h1 className="display text-[44px]">{title}</h1>
+          <p className="mb-8 mt-2 text-[15px] text-muted">{subtitle}</p>
           {children}
         </div>
       </section>

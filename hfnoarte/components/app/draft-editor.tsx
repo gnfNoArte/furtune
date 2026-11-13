@@ -7,8 +7,8 @@ import type { ReviewState } from "@/lib/types";
 
 export interface DraftRow { id: string; kind: string; title: string; content: string; review_state: ReviewState; generated_mode: string | null; warnings: string[]; approved_at: string | null }
 
-const STATE: Record<ReviewState, { label: string; tone: "neutral" | "violet" | "strong" | "danger" }> = {
-  draft: { label: "Draft", tone: "neutral" }, pending_review: { label: "Pending review", tone: "violet" },
+const STATE: Record<ReviewState, { label: string; tone: "neutral" | "butter" | "strong" | "danger" }> = {
+  draft: { label: "Draft", tone: "neutral" }, pending_review: { label: "Pending review", tone: "butter" },
   approved: { label: "Approved", tone: "strong" }, rejected: { label: "Rejected", tone: "danger" },
 };
 

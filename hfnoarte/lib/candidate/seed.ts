@@ -1,15 +1,16 @@
 import type { CandidateProfile } from "../types";
 
 /**
- * NoArte's starting profile, exactly as provided by the candidate.
+ * Olayemi's (NoArte's) starting profile, exactly as provided by the candidate
+ * and the NoArte brand system.
  * Nothing here is inferred: no extra technologies, years, results or titles.
  * The uploaded resume replaces this, and every field can be edited.
  */
 export const NOARTE_SEED_PROFILE: CandidateProfile = {
-  full_name: "NoArte",
-  headline: "Multidisciplinary digital builder — website design & development, product design, UI/UX, branding and Web3",
+  full_name: "Olayemi",
+  headline: "Digital Builder · brands, websites, interfaces",
   summary:
-    "Designs and builds websites in Webflow and Framer, designs products and interfaces in Figma, and creates brand identities. Freelance since March 2022, with product design, AI data annotation and coding-contributor work alongside.",
+    "I design and build digital experiences that feel right: websites in Webflow, Framer and Shopify, brand identities, and UI/UX for products and apps. Based in Lagos, Nigeria, working with clients everywhere. Freelance since March 2022, with product design, AI data annotation and coding-contributor work alongside.",
   experience_level: null,
   skills: [
     { name: "Webflow", category: "Website design & development", evidence: "Aksum Labs, FURTUNE, A.G. Leventis Museum" },
@@ -30,8 +31,11 @@ export const NOARTE_SEED_PROFILE: CandidateProfile = {
     { name: "Logo design", category: "Branding & visual design", evidence: "MANKIND, FURTUNE" },
     { name: "Visual identity systems", category: "Branding & visual design" },
     { name: "Typography & visual direction", category: "Branding & visual design" },
-    { name: "Basic CSS", category: "Frontend knowledge" },
-    { name: "Frontend development knowledge", category: "Frontend knowledge" },
+    // From the NoArte brand system: frontend work on real client projects — growing, never the headline.
+    { name: "HTML", category: "Frontend development (growing, secondary)", evidence: "Real client work" },
+    { name: "CSS", category: "Frontend development (growing, secondary)", evidence: "Real client work" },
+    { name: "JavaScript", category: "Frontend development (growing, secondary)", evidence: "Real client work" },
+    { name: "Shopify Liquid", category: "Frontend development (growing, secondary)", evidence: "Real client work" },
     { name: "P2P cryptocurrency trading (Bitcoin, USDT)", category: "Web3" },
     { name: "Binance P2P", category: "Web3" },
     { name: "Web3 ecosystem knowledge", category: "Web3" },
@@ -98,6 +102,6 @@ export const NOARTE_SEED_PROFILE: CandidateProfile = {
     "Data Annotator", "AI Trainer",
   ],
   portfolio_url: null,
-  writing_style: null,
+  writing_style: "Confident, warm, direct, a little playful. Short sentences. First person \"I\", never \"we\". Concrete, no buzzwords.",
   origin: "seed",
 };

@@ -18,7 +18,7 @@ export interface TrackerItem {
 export const COLUMNS = ["saved", "approved", "applied", "interview", "offer", "rejected"] as const;
 type Column = (typeof COLUMNS)[number];
 const TITLES: Record<Column, string> = { saved: "Saved", approved: "Approved", applied: "Applied", interview: "Interview", offer: "Offer", rejected: "Rejected" };
-const ACCENT: Record<Column, string> = { saved: "bg-faint", approved: "bg-violet", applied: "bg-info", interview: "bg-stretch", offer: "bg-strong", rejected: "bg-danger" };
+const ACCENT: Record<Column, string> = { saved: "bg-faint", approved: "bg-ink", applied: "bg-info", interview: "bg-stretch", offer: "bg-strong", rejected: "bg-danger" };
 
 export function columnOf(o: Pick<TrackerItem, "status" | "approved_at">): Column | null {
   if (o.status === "rejected") return "rejected";
@@ -77,7 +77,7 @@ export function TrackerBoard({ items, view }: { items: TrackerItem[]; view: "boa
         <select aria-label="Move to" className="field h-8 py-0 text-[12px]" value={columnOf(it) ?? ""} onChange={(e) => moveTo(it, e.target.value as Column)}>
           {COLUMNS.map((c) => <option key={c} value={c}>{TITLES[c]}</option>)}
         </select>
-        {it.url && <a href={it.url} target="_blank" rel="noopener noreferrer" aria-label="Open original" className="grid size-8 shrink-0 place-items-center rounded-lg text-violet-bright hover:bg-surface-2"><IconExternal width={15} height={15} /></a>}
+        {it.url && <a href={it.url} target="_blank" rel="noopener noreferrer" aria-label="Open original" className="grid size-8 shrink-0 place-items-center rounded-lg text-fg hover:bg-surface-2"><IconExternal width={15} height={15} /></a>}
       </div>
     </div>
   );
@@ -105,7 +105,7 @@ export function TrackerBoard({ items, view }: { items: TrackerItem[]; view: "boa
                   <td className="px-4 py-3 text-muted">{fmtDate(it.approved_at)}</td>
                   <td className="px-4 py-3 text-muted">{fmtDate(it.applied_at)}</td>
                   <td className="px-4 py-3 text-muted">{fmtDate(it.interview_at)}</td>
-                  <td className="px-4 py-3">{it.url ? <a href={it.url} target="_blank" rel="noopener noreferrer" className="text-violet-bright hover:underline">Open</a> : "—"}</td>
+                  <td className="px-4 py-3">{it.url ? <a href={it.url} target="_blank" rel="noopener noreferrer" className="link">Open</a> : "—"}</td>
                 </tr>
               ))}
             </tbody>

@@ -28,6 +28,9 @@ describe("dedupe", () => {
 });
 
 describe("drafts", () => {
+  it("flags 'we' — NoArte is one person", () => {
+    expect(checkDraft("We build beautiful sites for our clients.", P).join(" ")).toMatch(/first person/);
+  });
   it("flags technologies the candidate hasn't listed", () => {
     expect(checkDraft("I have built many React and TypeScript apps.", P).join(" ")).toMatch(/React/);
     expect(checkDraft("I design and build Webflow sites.", P)).toEqual([]);
@@ -36,7 +39,8 @@ describe("drafts", () => {
     const d = templateDrafts({ kind: "employment", title: "Webflow Designer", description: "Webflow, Figma, CMS", company: "Acme", publisher: "Acme" }, P);
     const letter = d.find((x) => x.kind === "cover_letter")!;
     expect(letter.content).toMatch(/Aksum Labs|FURTUNE|Leventis/);
-    expect(letter.content).not.toMatch(/React|TypeScript|JavaScript|full-stack/i);
+    expect(letter.content).not.toMatch(/React|TypeScript|full-stack|\bwe\b|web designer/i);
+    expect(letter.content).toMatch(/Olayemi/);
     expect(d.every((x) => x.warnings.length === 0)).toBe(true);
   });
   it("prepares comment, DM and proposal for social posts", () => {

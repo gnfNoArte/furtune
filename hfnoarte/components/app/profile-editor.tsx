@@ -15,7 +15,7 @@ export function ProfileEditor({ initial, estimate }: { initial: CandidateProfile
   const [version, setVersion] = useState(0); // remounts uncontrolled fields after a resume import
   const [saved, setSaved] = useState(JSON.stringify(initial));
   const [pending, start] = useTransition();
-  const [msg, setMsg] = useState<{ tone: "violet" | "danger"; text: string } | null>(null);
+  const [msg, setMsg] = useState<{ tone: "butter" | "danger"; text: string } | null>(null);
   const dirty = JSON.stringify(p) !== saved;
   const set = <K extends keyof CandidateProfile>(k: K, v: CandidateProfile[K]) => setP((x) => ({ ...x, [k]: v }));
   const categories = useMemo(() => [...new Set(p.skills.map((s) => s.category || "Skills"))], [p.skills]);
@@ -23,7 +23,7 @@ export function ProfileEditor({ initial, estimate }: { initial: CandidateProfile
   const save = (next = p, origin: "manual" | "resume" = "manual") => start(async () => {
     const r = await saveProfile(next, origin);
     if (r.error) setMsg({ tone: "danger", text: r.error });
-    else { setSaved(JSON.stringify(next)); setMsg({ tone: "violet", text: "Profile saved. New searches and drafts use it straight away." }); }
+    else { setSaved(JSON.stringify(next)); setMsg({ tone: "butter", text: "Profile saved. New searches and drafts use it straight away." }); }
   });
 
   return (
@@ -42,7 +42,7 @@ export function ProfileEditor({ initial, estimate }: { initial: CandidateProfile
           };
         setP(next);
         setVersion((v) => v + 1);
-        setMsg({ tone: "violet", text: "Resume details applied below — review them, then press Save profile." });
+        setMsg({ tone: "butter", text: "Resume details applied below — review them, then press Save profile." });
       }} />
 
       <div className="sticky top-14 z-20 -mx-4 flex items-center gap-3 border-b border-line bg-bg/90 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6 lg:top-0">
@@ -190,7 +190,7 @@ function ResumeUpload({ onApply }: { onApply: (p: CandidateProfile, mode: "repla
           <div className="mt-5 space-y-4 border-t border-line pt-5">
             <div className="flex flex-wrap items-center gap-2">
               <p className="font-medium">Extracted from your resume</p>
-              <Badge tone={res.extraction.mode === "ai" ? "violet" : "neutral"}>{res.extraction.mode === "ai" ? "AI extraction" : "Keyword extraction (fallback)"}</Badge>
+              <Badge tone={res.extraction.mode === "ai" ? "butter" : "neutral"}>{res.extraction.mode === "ai" ? "AI extraction" : "Keyword extraction (fallback)"}</Badge>
             </div>
             {res.extraction.warnings.map((w) => <p key={w} className="text-[13px] text-stretch">{w}</p>)}
             <div className="grid gap-4 text-[13px] sm:grid-cols-3">

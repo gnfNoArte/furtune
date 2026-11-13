@@ -2,6 +2,8 @@
 
 A personal AI job-hunting agent. It finds jobs, freelance briefs and hiring posts from free, permitted sources, scores each one honestly against your real experience, prepares applications and messages, and tracks everything. **Nothing is ever submitted or sent by the app.** You approve each item, then apply or reply yourself.
 
+The interface follows the **NoArte brand system** (Nov 2026): Paper backgrounds, Ink text and pill buttons, Brass as the single sparing accent, Cormorant for big statements, Geist for the interface, Geist Mono for labels, and the NA monogram in Amarante. Drafts follow the brand voice: first person, never "we", no buzzwords, no invented results. Replace `app/icon.svg` with the outlined NA monogram from your `logo/` folder for a pixel-exact favicon.
+
 Everything runs on free tiers: Supabase, Vercel Hobby, the Gemini or Groq free tier for AI (optional), free job APIs, and Telegram, email or WhatsApp notifications.
 
 ---
@@ -56,7 +58,7 @@ app/                 Next.js App Router (pages, server actions, cron route)
   (app)/             dashboard, opportunities, review, tracker, profile, preferences, sources, notifications
   actions/           server actions (all run as the signed-in user, RLS applies)
   api/cron/discover  scheduled discovery (CRON_SECRET-protected, service role)
-components/          UI kit + app components (dark, violet design system)
+components/          UI kit + app components (NoArte brand system: Paper, Ink, Brass)
 lib/
   candidate/         seed profile, skill clusters, experience estimate
   matching/          explainable scoring, intent detection, credibility

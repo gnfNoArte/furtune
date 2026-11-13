@@ -21,7 +21,7 @@ export function OpportunityCard({ o, compact = false }: { o: OpportunityListItem
   const arr = arrangementLabel(o.work_arrangement);
   const meta = [o.company ?? o.publisher, o.location, arr && !o.location?.toLowerCase().includes(arr.toLowerCase()) ? arr : null, employmentLabel(o.employment_type), o.salary_text].filter(Boolean);
   return (
-    <article className={`card group relative p-4 transition-colors hover:border-line-strong sm:p-5 ${o.is_sample ? "border-stretch/30" : ""}`}>
+    <article className={`card group relative p-4 transition-colors hover:border-line-strong sm:p-5 ${o.is_sample ? "border-dashed border-stretch/50" : ""}`}>
       <div className="flex gap-4">
         <ScoreRing score={o.match_score} band={o.match_band} size={compact ? 44 : 52} />
         <div className="min-w-0 flex-1">
@@ -40,8 +40,8 @@ export function OpportunityCard({ o, compact = false }: { o: OpportunityListItem
           {meta.length > 0 && <p className="mt-1 truncate text-[13px] text-muted">{meta.join(" · ")}</p>}
           {!compact && o.match && (
             <div className="mt-3 grid gap-1.5 text-[13px] sm:grid-cols-2 sm:gap-4">
-              <p className="text-muted"><span className="text-strong">Why · </span>{o.match.reasons[0] ?? o.match.experience_fit}</p>
-              {o.match.gaps.length > 0 && <p className="text-muted"><span className="text-stretch">Gaps · </span>{o.match.gaps.slice(0, 2).join(" ")}</p>}
+              <p className="text-muted"><span className="font-medium text-ink">Why · </span>{o.match.reasons[0] ?? o.match.experience_fit}</p>
+              {o.match.gaps.length > 0 && <p className="text-muted"><span className="font-medium text-stretch">Gaps · </span>{o.match.gaps.slice(0, 2).join(" ")}</p>}
             </div>
           )}
           <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[12px] text-faint">
@@ -50,7 +50,7 @@ export function OpportunityCard({ o, compact = false }: { o: OpportunityListItem
             <span>Found {relTime(o.discovered_at)}</span>
             {!compact && <ModeBadge mode={o.analysis_mode} />}
             {link?.url && (
-              <a href={link.url} target="_blank" rel="noopener noreferrer" className="relative z-10 ml-auto inline-flex items-center gap-1 text-violet-bright hover:underline">
+              <a href={link.url} target="_blank" rel="noopener noreferrer" className="relative z-10 ml-auto inline-flex items-center gap-1 link">
                 Original <IconExternal width={14} height={14} />
               </a>
             )}

@@ -42,12 +42,12 @@ export default async function Dashboard() {
   const ai = aiAvailable();
 
   return (
-    <div className="space-y-8">
-      <header className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+    <div className="space-y-12">
+      <header className="rise flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="eyebrow mb-2">Dashboard</p>
-          <h1 className="text-[28px] font-semibold tracking-tight sm:text-[32px]">Welcome back{name ? `, ${name}` : ""}.</h1>
-          <p className="mt-1.5 text-[14.5px] text-muted">
+          <p className="eyebrow mb-3">Dashboard</p>
+          <h1 className="display text-[44px] font-light sm:text-[64px]">Welcome back{name ? <>, <em className="italic text-accent">{name}</em></> : ""}.</h1>
+          <p className="mt-3 font-mono text-[12px] uppercase tracking-[0.06em] text-muted">
             {lastRun ? <>Last search {relTime(lastRun.started_at)} · {lastRun.new_count} new · {lastRun.found} items read</> : "No searches yet — run your first one."}
           </p>
         </div>
@@ -79,7 +79,7 @@ export default async function Dashboard() {
 
       <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
         <section>
-          <SectionTitle action={<Link href="/opportunities" className="text-[13px] text-violet-bright hover:underline">All opportunities</Link>}>Top matches</SectionTitle>
+          <SectionTitle action={<Link href="/opportunities" className="text-[13px] link">All opportunities</Link>}>Top matches</SectionTitle>
           {topItems.length ? (
             <div className="space-y-3">{topItems.map((o) => <OpportunityCard key={o.id} o={o} />)}</div>
           ) : (
@@ -100,7 +100,7 @@ export default async function Dashboard() {
                 { href: "/sources", icon: IconRadar, label: "Source status", sub: "What was searched, and how" },
               ].map((a) => (
                 <Link key={a.href} href={a.href} className="card flex items-center gap-3 px-3.5 py-3 transition-colors hover:border-line-strong">
-                  <span className="grid size-9 place-items-center rounded-lg bg-violet-wash text-violet-bright"><a.icon /></span>
+                  <span className="grid size-9 place-items-center rounded-full bg-butter text-ink"><a.icon /></span>
                   <span className="min-w-0"><span className="block text-sm font-medium">{a.label}</span><span className="block truncate text-xs text-faint">{a.sub}</span></span>
                 </Link>
               ))}
@@ -108,7 +108,7 @@ export default async function Dashboard() {
           </section>
 
           <section>
-            <SectionTitle action={<Link href="/sources" className="text-[13px] text-violet-bright hover:underline">Details</Link>}>Search activity</SectionTitle>
+            <SectionTitle action={<Link href="/sources" className="text-[13px] link">Details</Link>}>Search activity</SectionTitle>
             <div className="card divide-y divide-line">
               {(runs.data ?? []).length === 0 && <p className="p-4 text-sm text-muted">No searches have run yet. Daily searches start once the scheduler is set up (see README).</p>}
               {(runs.data ?? []).map((r) => (

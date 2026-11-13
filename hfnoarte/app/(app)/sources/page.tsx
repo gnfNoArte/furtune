@@ -35,7 +35,7 @@ export default async function Sources() {
 
       <Card className="mb-8 flex flex-wrap items-center gap-3 p-4 text-sm">
         <span className="font-medium">Analysis</span>
-        {aiAvailable() ? <Badge tone="violet">AI · {ai?.provider} · {ai?.model}</Badge> : <Badge tone="stretch">Keyword fallback — no AI key</Badge>}
+        {aiAvailable() ? <Badge tone="butter">AI · {ai?.provider} · {ai?.model}</Badge> : <Badge tone="stretch">Keyword fallback — no AI key</Badge>}
         <span className="text-muted">AI checks intent and fit for the most promising items each run; everything else is scored by transparent rules.</span>
       </Card>
 

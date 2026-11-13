@@ -30,7 +30,7 @@ export default async function OpportunityPage({ params, searchParams }: { params
   const ds = (drafts ?? []) as DraftRow[];
   const pendingCount = ds.filter((d) => d.review_state === "pending_review").length;
   const facts: [string, React.ReactNode][] = [
-    ["Company", o.company], ["Posted by", o.publisher_url ? <a href={o.publisher_url} target="_blank" rel="noopener noreferrer" className="text-violet-bright hover:underline">{o.publisher}</a> : o.publisher],
+    ["Company", o.company], ["Posted by", o.publisher_url ? <a href={o.publisher_url} target="_blank" rel="noopener noreferrer" className="link">{o.publisher}</a> : o.publisher],
     ["Location", o.location], ["Arrangement", arrangementLabel(o.work_arrangement)], ["Type", employmentLabel(o.employment_type)],
     ["Pay / budget", o.salary_text ?? "Not disclosed"], ["Posted", o.published_at ? `${fmtDate(o.published_at)} (${relTime(o.published_at)})` : "Date not given by source"],
     ["Discovered", fmtDateTime(o.discovered_at)], ["Approved", o.approved_at ? fmtDateTime(o.approved_at) : "—"], ["Applied", o.applied_at ? fmtDate(o.applied_at) : "—"],
@@ -53,7 +53,7 @@ export default async function OpportunityPage({ params, searchParams }: { params
             <p className="mt-1 text-muted">{[o.company ?? o.publisher, o.location].filter(Boolean).join(" · ")}</p>
           </div>
           <div className="flex shrink-0 flex-wrap gap-2">
-            {primary && <a href={primary} target="_blank" rel="noopener noreferrer" className="inline-flex h-10 items-center gap-2 rounded-[10px] bg-violet px-4 text-sm font-medium text-white hover:bg-violet-bright"><IconExternal width={16} height={16} /> Open original</a>}
+            {primary && <a href={primary} target="_blank" rel="noopener noreferrer" className="inline-flex h-10 items-center gap-2 rounded-[10px] rounded-full bg-ink px-5 text-sm font-medium text-paper hover:bg-ink-soft"><IconExternal width={16} height={16} /> Open original</a>}
           </div>
         </div>
       </div>
@@ -66,12 +66,12 @@ export default async function OpportunityPage({ params, searchParams }: { params
               <Card className="p-5">
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div>
-                    <p className="eyebrow mb-2 text-strong">Where you match</p>
+                    <p className="eyebrow mb-2">Where you match</p>
                     {match.reasons.length ? <ul className="space-y-1.5 text-sm">{match.reasons.map((r) => <li key={r}>{r}</li>)}</ul> : <p className="text-sm text-muted">No clear overlap found.</p>}
                   </div>
                   <div>
-                    <p className="eyebrow mb-2 text-stretch">Gaps &amp; requirements</p>
-                    {match.gaps.length ? <ul className="space-y-1.5 text-sm">{match.gaps.map((g) => <li key={g}>{g}</li>)}</ul> : <p className="text-sm text-muted">Nothing missing that we could see.</p>}
+                    <p className="eyebrow mb-2">Gaps &amp; requirements</p>
+                    {match.gaps.length ? <ul className="space-y-1.5 text-sm">{match.gaps.map((g) => <li key={g}>{g}</li>)}</ul> : <p className="text-sm text-muted">Nothing missing as far as the posting says.</p>}
                   </div>
                 </div>
                 <div className="mt-5 grid gap-3 border-t border-line pt-5 text-sm sm:grid-cols-2">
@@ -82,7 +82,7 @@ export default async function OpportunityPage({ params, searchParams }: { params
                   {match.components.map((c) => (
                     <div key={c.key} className="grid grid-cols-[130px_1fr_44px] items-center gap-3 text-[13px] sm:grid-cols-[180px_1fr_52px]">
                       <span className="text-muted">{c.label}</span>
-                      <span className="h-1.5 overflow-hidden rounded-full bg-surface-3"><span className="block h-full rounded-full bg-violet" style={{ width: `${(c.score / c.max) * 100}%` }} /></span>
+                      <span className="h-1.5 overflow-hidden rounded-full bg-surface-3"><span className="block h-full rounded-full bg-ink" style={{ width: `${(c.score / c.max) * 100}%` }} /></span>
                       <span className="text-right tabular-nums text-faint">{c.score}/{c.max}</span>
                       <span className="col-span-3 -mt-1 text-[12px] text-faint">{c.note}</span>
                     </div>
@@ -132,7 +132,7 @@ export default async function OpportunityPage({ params, searchParams }: { params
               {links.map((l) => (
                 <li key={l.id} className="space-y-1">
                   <div className="flex items-center gap-2"><SourceBadge source={l.source} /><span className="text-faint">{l.access_method}</span></div>
-                  {l.url ? <a href={l.url} target="_blank" rel="noopener noreferrer" className="block truncate text-violet-bright hover:underline">{l.url}</a> : <p className="text-faint">No link</p>}
+                  {l.url ? <a href={l.url} target="_blank" rel="noopener noreferrer" className="block truncate link">{l.url}</a> : <p className="text-faint">No link</p>}
                   {l.author && <p className="text-faint">By {l.author}</p>}
                 </li>
               ))}

@@ -2,7 +2,7 @@
 // the Review & Approve queue — nothing is ever sent or submitted from here.
 import "server-only";
 import { chatJson } from "../ai/client";
-import { HONESTY_RULES, profileForPrompt } from "../ai/rules";
+import { HONESTY_RULES, VOICE_RULES, profileForPrompt } from "../ai/rules";
 import { candidateClusters, evidenceFor } from "../candidate/clusters";
 import { clusterLabel, clustersIn } from "../taxonomy";
 import { DRAFT_LABELS, type CandidateProfile, type DraftKind, type OpportunityKind } from "../types";
@@ -67,7 +67,7 @@ export function templateDrafts(o: OpportunityForDraft, p: CandidateProfile): Pre
       "",
       "I'd welcome the chance to talk about how I could help.", "", "Kind regards,", name,
     ].filter((l, i, a) => !(l === "" && a[i - 1] === "")).join("\n") + portfolio,
-    intro: `I'm ${name ? `${name}, ` : ""}${p.headline ? p.headline.charAt(0).toLowerCase() + p.headline.slice(1) : "a designer and website builder"}. ${projList[0] ? `Relevant example: ${projList[0]}.` : ""}`.trim() + portfolio,
+    intro: `I'm ${name || "a digital builder"}${p.headline ? ` — ${p.headline}` : ""}. ${projList[0] ? `Relevant example: ${projList[0]}.` : ""}`.trim() + portfolio,
     qa: [
       `Why are you interested in this role?\n→ [Your own words — e.g. what draws you to ${o.company ?? "this team"}.] It lines up with my work in ${skillText}.`,
       `Describe relevant experience.\n→ ${projList.length ? projList.join("; ") : "See profile."}`,
@@ -108,8 +108,10 @@ export function templateDrafts(o: OpportunityForDraft, p: CandidateProfile): Pre
 export async function aiDrafts(o: OpportunityForDraft, p: CandidateProfile): Promise<PreparedDraft[]> {
   const kinds = kindsFor(o.kind);
   const { projects } = relevantProjects(o, p);
-  const system = `You prepare application material for one real candidate. Write like a thoughtful person, not a template: specific, warm, concise, no clichés ("I am thrilled", "passionate", "synergy", "leverage", "delve"), no exclamation marks, no emojis.
+  const system = `You prepare application material for one real candidate. Write like a thoughtful person, not a template: specific, concise, no clichés ("I am thrilled", "delve"), no exclamation marks, no emojis.
 ${HONESTY_RULES}
+${VOICE_RULES}
+- Follow the candidate's writing_style if the profile has one.
 - Mention the most relevant projects by name with their correct kind. Leave a clearly marked [placeholder] for anything you don't know (availability, rates, motivation specifics).
 - Public comments: 1–2 sentences, no hard selling, never include personal contact details.
 - Direct messages: under 90 words.
